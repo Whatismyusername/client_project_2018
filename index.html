@@ -21,14 +21,21 @@
             <h1 class="arrowSymbol arrowSymbolRight">&#x203A;</h1>
         </div>
         
-        <div class= "mainPageWrapper">
-            <div id= "searchBar">
-                <input class= "songSearchInput" placeholder="Song Name">
-                <button class= "dropdownBtn songSearchDropdown">&#x21d3;</button>
-                <button class= "dropdownBtn songSearchDropdown2">&#x21d1;</button>
+        <div class="mainPageWrapper">
+            <div id="searchBar">
+                <input class="songSearchInput" placeholder="Song Name">
+                <button class="dropdownBtn songSearchDropdown">&#x21d3;</button>
+                <button class="dropdownBtn songSearchDropdown2">&#x21d1;</button>
                 <button class="songSearchBtn">Search</button>
-                <div class= "dropdownList"></div>
+                <div class="dropdownList">
+                    <div class="dropdownContent">
+                        <input class="dropdownWords" placeholder="Clear All History" disabled >
+                        <button class="deleteHistory" id="deleteAllHistory">&#xd7;</button>
+                    </div>
+                </div>
             </div>
+            
+            <div class= "displayMusic"></div>
         </div>
         
     </body>

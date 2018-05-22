@@ -1,3 +1,6 @@
+body{
+    margin:0;
+}
 button{
     background-color:rgb(255, 255, 255);
     font-family:"Saira Extra Condensed";
@@ -46,6 +49,7 @@ button{
 }
 .dropdownBtn{
     margin-left:-1vw;
+    width:5.4vw;
 }
 .songSearchBtn{
     width:18vw;
@@ -53,4 +57,25 @@ button{
 #searchBar{
     width:65.8vw;
     margin:auto;
+}
+.dropdownList{
+    font-family:"Saira Extra Condensed";
+    font-size:3vw;
+}
+.dropdownContent{
+    font-family:"Saira Extra Condensed";
+    font-size:3vw;
+    width:65.8vw;
+    margin-left:1px;
+}
+.dropdownWords{
+    font-family:"Saira Extra Condensed";
+    font-size:3vw;
+    margin:auto;
+    width:41vw;
+    color:black;
+}
+.deleteHistory{
+    width:5.4vw;
+    margin-left:-1vw;
 }
