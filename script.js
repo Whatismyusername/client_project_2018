@@ -1,9 +1,12 @@
 $('document').ready(function(){
     $('.songSearchDropdown2').hide();
     $('.dropdownList').hide();
+    //$('.p5Canvas').css('display', 'block');
     
     var userValue;
     var myHistory = [];
+    window.musicImage = null;
+    window.musicChanged = false;
     
     function thisValueIsIncludedInHistory(value){
         for(var i = 0; i <= myHistory.length; i++){
@@ -32,7 +35,11 @@ $('document').ready(function(){
                 searchForMusic(userValue);
             })
             $('#history' + i + 'Button').click(function(){
+                $('#history' + i + 'Button').click(function(){
+                    myHistory.splice(i, 1)
+                })
                 displayHistory();
+                console.log(myHistory);
             })
         }
         $('.dropdownContent').append('<input class="dropdownWords" placeholder= "Clear All History" disabled >');
@@ -41,6 +48,7 @@ $('document').ready(function(){
             console.log("fire")
             deleteAllHistory();
         });
+        
         
     }
     
@@ -56,13 +64,33 @@ $('document').ready(function(){
             success: function(response) {
                 $('.displayMusic').empty();
                 for (var i = 0; i < response.tracks.items.length; i++){
-                    $('.displayMusic').append('<p> ' + response.tracks.items[i].name + '</p>');
+                    $('.displayMusic').append('<p>' + response.tracks.items[i].name + '</p>');
+                    $('.displayMusic').append('<p>' + response.tracks.items[i].artists[0].name + '</p>');
+                    $('.displayMusic').append('<img id="music_' + i + '" src="'+ response.tracks.items[i].album.images[0].url + '"width="100" height="100">');
+                    $('.displayMusic').append('<a href="'+ response.tracks.items[i].external_urls.spotify +'" target="_blank">View Full Version</a>')
                     $('.displayMusic').append('<audio src= "' + response.tracks.items[i].preview_url + '" controls>');
+                    (function(id) {
+                        $('#music_' + id).click(function(){
+                            window.musicImage = response.tracks.items[id].album.images[0].url;
+                            window.musicChanged = true;
+                            $('#container').css('display', 'block');
+                            $('.arrowWrapper').toggle();
+                            $('.mainPageWrapper').toggle();
+                            console.log("FIRE");
+                        });
+                    })(i);
+                    
                 }
               
           },
         }); 
     }
+    
+    $('#container').click(function() {
+        $('#container').css('display', 'none');
+        $('.arrowWrapper').toggle();
+        $('.mainPageWrapper').toggle();
+    })
     
     function historySearch(){
         for (var i = 0; i < myHistory.length - 1; i++){
@@ -96,6 +124,7 @@ $('document').ready(function(){
     $('#deleteAllHistory').click(function(){
         deleteAllHistory();
     });
+    
     
     
 })
